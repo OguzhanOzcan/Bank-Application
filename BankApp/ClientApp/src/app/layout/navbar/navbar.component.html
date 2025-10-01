@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg custom-navbar shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center">
+    <div class="navbar-links d-flex justify-content-center flex-grow-1">
+      <ul class="navbar-nav d-flex flex-row">
+
+        <li class="nav-item mx-2">
+          <a class="navbar-brand d-flex align-items-center" routerLink="/">
+            <img src="assets/logo2.png" width="40" height="40" class="d-inline-block align-top mr-2" alt="Logo">
+          </a>
+        </li>
+
+        <li class="nav-item mx-2">
+          <a class="nav-link" routerLink="/kredi-hesapla" routerLinkActive="active">Kredi Hesapla</a>
+        </li>
+
+        <li class="nav-item mx-2" *ngIf="isLoggedIn">
+          <a class="nav-link" routerLink="/kredi-basvuru" routerLinkActive="active">Kredi Başvurusu</a>
+        </li>
+
+        <li class="nav-item mx-2">
+          <a class="nav-link" routerLink="/bankalar" routerLinkActive="active">Bankalar</a>
+        </li>
+
+        <li class="nav-item mx-2" *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/musteri-ol" routerLinkActive="active">Banka Müşterisi Ol</a>
+        </li>
+
+        <li class="nav-item mx-2" *ngIf="!isLoggedIn">
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">Hakkımızda</a>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="isLoggedIn">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-circle"></i> Profil
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item" routerLink="/profil">Kişisel Bilgiler</a>
+            <a class="dropdown-item" routerLink="/my-credit">Kredileri Yönet</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" (click)="logout()">Çıkış Yap</a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

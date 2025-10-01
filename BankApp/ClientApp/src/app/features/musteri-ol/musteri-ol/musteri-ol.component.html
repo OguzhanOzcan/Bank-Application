@@ -1,0 +1,110 @@
+<div class="container register">
+  <div class="row">
+    <div class="col-md-3 register-left">
+      <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
+      <h3>Hoşgeldiniz</h3>
+      <p>Kendi paranızı kazanmaya 30 saniye kaldı!</p>
+      <a class="btn btn-white btn-login" routerLink="/login">Giriş Yap</a>
+    </div>
+
+    <div class="col-md-9 register-right">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="row register-form">
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Ad" formControlName="firstName"/>
+              <div *ngIf="registerForm.get('firstName')?.touched && registerForm.get('firstName')?.invalid" class="text-danger">
+                Ad zorunludur.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Soyad" formControlName="lastName"/>
+              <div *ngIf="registerForm.get('lastName')?.touched && registerForm.get('lastName')?.invalid" class="text-danger">
+                Soyad zorunludur.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="email" class="form-control" placeholder="E-Mail" formControlName="email"/>
+              <div *ngIf="registerForm.get('email')?.hasError('emailTaken')" class="text-danger">
+                {{ serverErrorMessage }}
+              </div>
+              <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')" class="text-danger">
+                E-Mail zorunludur.
+              </div>
+              <div *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')" class="text-danger">
+                Geçerli bir E-Mail adresi giriniz.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="date" class="form-control" formControlName="birthDate"/>
+              <div *ngIf="registerForm.get('birthDate')?.touched && registerForm.get('birthDate')?.invalid" class="text-danger">
+                Doğum tarihi zorunludur.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="maxl">
+                <label class="radio inline">
+                  <input type="radio" formControlName="gender" value="male" />
+                  <span> Erkek </span>
+                </label>
+                <br>
+                <label class="radio inline">
+                  <input type="radio" formControlName="gender" value="female" />
+                  <span>Kadın</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Şifre" formControlName="password"/>
+              <div *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.errors" class="text-danger mt-1">
+                Şifre 6 karakterden uzun olmalı, en az 1 harf, 1 sayı ve 1 özel karakter içermeli.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-control" placeholder="Şifre Tekrarı" formControlName="confirmPassword"/>
+              <div *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.errors?.passwordMismatch" class="text-danger mt-1">
+                Şifreler eşleşmiyor.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Telefon Numarası" formControlName="phone"/>
+              <div *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid" class="text-danger">
+                Telefon numarası geçerli olmalıdır.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <select class="form-control" formControlName="city">
+                <option value="" disabled>Şehir Seçiniz</option>
+                <option *ngFor="let item of sehir" [value]="item">{{item}}</option>
+              </select>
+              <div *ngIf="registerForm.get('city')?.touched && registerForm.get('city')?.invalid" class="text-danger">
+                Şehir seçmelisiniz.
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="btnRegister btn btn-primary"
+              [disabled]="isLoading"
+              (click)="registerForm.markAllAsTouched()">
+              <span *ngIf="!isLoading">Kayıt Ol</span>
+              <span *ngIf="isLoading">Yükleniyor...</span>
+            </button>
+
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

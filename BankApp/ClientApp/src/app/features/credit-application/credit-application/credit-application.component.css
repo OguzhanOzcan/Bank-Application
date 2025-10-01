@@ -1,0 +1,63 @@
+.container-fluid {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: 80px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-card .form-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.form-card .form-control,
+.form-card .form-select {
+  font-size: 0.9rem;
+  height: 30px;
+  padding: 6px 10px;
+  width: 100%;
+}
+
+.form-card .btn {
+  font-size: 1rem;
+  padding: 8px 12px;
+}
+
+.scroll-card {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+}
+
+
+.form-card .btn-danger {
+  background-color: #2e4553 !important;
+  border-color: #2e4553 !important;
+  color: #ffffff !important;
+}
+
+
+.form-card .btn-danger:hover,
+.form-card .btn-danger:focus {
+  background-color: #1e2f3b !important;
+  border-color: #1e2f3b !important;
+  color: #ffffff !important;
+}
+
+
+.form-card .btn-danger:active {
+  background-color: #162028 !important;
+  border-color: #162028 !important;
+  transform: translateY(1px);
+}
+
+
+.form-card .btn-danger:focus {
+  box-shadow: 0 0 0 .2rem rgba(46, 69, 83, 0.18);
+}

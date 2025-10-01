@@ -1,0 +1,69 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<div class="thm-container">
+   <div class="row g-0 align-items-stretch">
+      <div class="col-md-8 d-flex">
+         <div class="contact-form-content flex-fill">
+            <div class="title">
+               <h1>Bize Ulaşın</h1>
+            </div>
+            <form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" class="contact-form">
+            <input type="text" name="name" placeholder="Adınız Soyadınız"
+                   [(ngModel)]="contact.name"
+                   #nameInput="ngModel" required>
+            <div *ngIf="nameInput.touched && nameInput.invalid" class="text-danger">
+                    Ad soyad zorunludur.
+            </div>
+            <input type="email" name="email" placeholder="E-mail Adresi" [(ngModel)]="contact.email" #emailInput="ngModel" required email>
+            <div *ngIf="emailInput.touched && emailInput.errors && emailInput.errors.required" class="text-danger">
+              E-posta zorunludur.
+            </div>
+            <div *ngIf="emailInput.touched && emailInput.errors && emailInput.errors.email" class="text-danger">
+              Geçerli bir e-posta giriniz.
+            </div>
+            <textarea name="message" placeholder="Mesajınız veya talebiniz"
+                   [(ngModel)]="contact.message"
+                   #messageArea="ngModel" required>
+            </textarea>
+            <div *ngIf="messageArea.touched && messageArea.invalid" class="text-danger">
+                    Mesajınızı giriniz.
+            </div>
+            <button type="submit"
+                    class="thm-btn yellow-bg"
+                    [disabled]="isSending">
+                  {{ isSending ? 'Gönderiliyor...' : 'Gönder' }}
+            </button>
+            <div *ngIf="serverMessage" class="text-danger mt-2 text-center">
+              {{serverMessage}}
+            </div>
+            </form>
+         </div>
+      </div>
+      <div class="col-md-4 d-flex">
+         <div class="contact-info flex-fill text-center">
+            <div class="title text-center">
+               <h1>İletişim Bilgileri</h1>
+            </div>
+            <div class="single-contact-info">
+               <h4>Adres</h4>
+               <p>Atatürk Bulvarı No: 10, 34367 Şişli, İstanbul <br> Türkiye</p>
+            </div>
+            <div class="single-contact-info">
+               <h4>Telefon</h4>
+               <p>Ofis: +90 212 123 45 67 <br> Mobil: +90 533 987 65 43</p>
+            </div>
+            <div class="single-contact-info">
+               <h4>E-posta</h4>
+               <p>info@firma.com <br> destek@firma.com</p>
+            </div>
+            <div class="single-contact-info">
+               <h4>Sosyal Medya</h4>
+               <div class="social d-flex justify-content-center gap-3">
+                  <a href="https://www.facebook.com/vakifbank" class="fab fa-facebook-f"></a>
+                  <a href="https://x.com/VakifBank" class="fab fa-linkedin"></a>
+                  <a href="https://www.linkedin.com/company/vakifbank" class="fab fa-twitter"></a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,94 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+
+      <ul class="nav nav-tabs mb-4">
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab==='personal'" (click)="switchTab('personal')">Kişisel Bilgiler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="activeTab==='password'" (click)="switchTab('password')">Şifre Güncelle</a>
+        </li>
+      </ul>
+
+      <div *ngIf="activeTab==='personal'">
+        <form [formGroup]="personalForm" (ngSubmit)="updatePersonal()">
+
+          <div class="form-group">
+            <label>Ad</label>
+            <input type="text" class="form-control" formControlName="firstName" (blur)="personalForm.get('firstName').markAsTouched()">
+            <div class="text-danger mt-1" *ngIf="personalForm.get('firstName').touched && personalForm.get('firstName').invalid">
+              Ad boş bırakılamaz
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Soyad</label>
+            <input type="text" class="form-control" formControlName="lastName" (blur)="personalForm.get('lastName').markAsTouched()">
+            <div class="text-danger mt-1" *ngIf="personalForm.get('lastName').touched && personalForm.get('lastName').invalid">
+              Soyad boş bırakılamaz
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" formControlName="email" (blur)="personalForm.get('email').markAsTouched()">
+            <div class="text-danger mt-1" *ngIf="personalForm.get('email').touched && personalForm.get('email').invalid">
+              Geçerli bir email giriniz
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Doğum Tarihi</label>
+            <input type="date" class="form-control" formControlName="birthDate" disabled>
+          </div>
+
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="text" class="form-control" formControlName="phone" (blur)="personalForm.get('phone').markAsTouched()">
+            <div class="text-danger mt-1" *ngIf="personalForm.get('phone').touched && personalForm.get('phone').invalid">
+              11 haneli telefon numarası giriniz
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Şehir</label>
+            <select class="form-control" formControlName="city" (blur)="personalForm.get('city').markAsTouched()">
+              <option value="">Seçiniz</option>
+              <option *ngFor="let s of sehir" [value]="s">{{ s }}</option>
+            </select>
+            <div class="text-danger mt-1" *ngIf="personalForm.get('city').touched && personalForm.get('city').invalid">
+              Şehir boş bırakılamaz
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block mt-3">Güncelle</button>
+        </form>
+      </div>
+
+      <div *ngIf="activeTab==='password'">
+        <form [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+
+          <div class="form-group">
+            <label>Yeni Şifre</label>
+            <input type="password" class="form-control" formControlName="password" (blur)="passwordForm.get('password').markAsTouched()">
+            <div *ngIf="passwordForm.get('password')?.touched && passwordForm.get('password')?.invalid" class="text-danger mt-1">
+              Şifre 6 karakterden uzun olmalı, en az 1 harf, 1 sayı ve 1 özel karakter içermeli
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Yeni Şifre (Tekrar)</label>
+            <input type="password" class="form-control" formControlName="confirmPassword" (blur)="passwordForm.get('confirmPassword').markAsTouched()">
+            <div *ngIf="passwordForm.get('confirmPassword')?.touched && passwordForm.get('confirmPassword')?.hasError('passwordMismatch')" class="text-danger mt-1">
+              Şifreler eşleşmiyor
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block mt-3">Şifreyi Güncelle</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

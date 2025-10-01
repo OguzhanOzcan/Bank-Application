@@ -1,0 +1,118 @@
+<div class="container-fluid mt-5 px-0">
+  <div class="row mb-3 align-items-start top-row">
+    <div class="col-md-6 d-flex justify-content-center">
+      <div class="card p-4 shadow-sm form-card">
+        <form #creditForm="ngForm" (ngSubmit)="calculatePaymentPlan()">
+          <div class="mb-3">
+            <label for="amount" class="form-label">Kredi Tutarı:</label>
+            <input type="number" class="form-control" id="amount"
+                   placeholder="Kredi tutarını giriniz."
+                   [(ngModel)]="amount" name="amount"
+                   #amountInput="ngModel" required>
+            <div *ngIf="amountInput.touched && amountInput.invalid" class="text-danger">
+              Kredi tutarı boş bırakılamaz.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="term" class="form-label">Vade Sayısı:</label>
+            <input type="number" class="form-control" id="term"
+                   placeholder="Vade sayısını giriniz."
+                   [(ngModel)]="term" name="term"
+                   #termInput="ngModel" required>
+            <div *ngIf="termInput.touched && termInput.invalid" class="text-danger">
+              Vade sayısı boş bırakılamaz.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="interest" class="form-label">Faiz Oranı:</label>
+            <input type="number"
+                    class="form-control"
+                    id="interest"
+                    placeholder="Faiz oranı otomatik gelir"
+                    [(ngModel)]="interest"
+                    name="interest"
+                    readonly>
+          </div>
+
+          <div class="mb-3">
+            <label for="bank" class="form-label">Banka Seçiniz:</label>
+            <select class="form-control" id="bank"
+                    [(ngModel)]="selectedBank" name="bank"
+                    #bankInput="ngModel"
+                    (change)="onBankChange()"
+                    required>
+              <option [ngValue]="null" disabled selected>Bir banka seçiniz</option>
+              <option *ngFor="let bank of banks" [ngValue]="bank">{{bank.name}}</option>
+            </select>
+            <div *ngIf="bankInput.touched && bankInput.invalid" class="text-danger">
+              Banka seçimi zorunludur.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="loanType" class="form-label">Kredi Türü:</label>
+            <select class="form-control" id="loanType"
+                    [(ngModel)]="selectedLoanType" name="loanType"
+                    (change)="onSelectionChange()"
+                    required>
+              <option [ngValue]="null" disabled selected>Bir kredi türü seçiniz</option>
+              <option *ngFor="let loan of loanTypes" [ngValue]="loan">{{loan.name}}</option>
+            </select>
+          </div>
+
+          <button type="submit"
+            class="btn btn-danger w-100 mt-2"
+            [disabled]="isLoading">
+            {{ isLoading ? 'Hesaplanıyor...' : 'Hesapla' }}
+          </button>
+
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-center">
+        <app-scroll-card title="Bankalar"></app-scroll-card>
+    </div>
+  </div>
+
+  <div class="row align-items-start bottom-row">
+    <div class="col-md-6 d-flex justify-content-center">
+      <div class="dropdown-table-wrapper w-100">
+        <button class="btn btn-light w-100 dropdown-toggle d-flex justify-content-between align-items-center"
+                type="button"
+                (click)="togglePaymentPlan()">
+          <span>Ödeme Planı</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+        <div *ngIf="showPaymentPlan" class="table-responsive mt-2">
+          <table class="table table-striped table-bordered mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Taksit No</th>
+                <th>Taksit Tutarı</th>
+                <th>Ödenen Faiz</th>
+                <th>Ödenen Ana Para</th>
+                <th>Kalan Ana Para Borcu</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let row of paymentPlansTable">
+                <td>{{row.installmentNo}}</td>
+                <td>{{row.installmentAmount}}</td>
+                <td>{{row.paidInterest}}</td>
+                <td>{{row.paidPrincipal}}</td>
+                <td>{{row.remainingPrincipal}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-flex justify-content-center">
+       <app-scroll-card title="Popüler Olan Aramalar"></app-scroll-card>
+    </div>
+  </div>
+</div>

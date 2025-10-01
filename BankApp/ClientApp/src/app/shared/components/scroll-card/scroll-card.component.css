@@ -1,0 +1,58 @@
+.scroll-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 285px;
+  max-height: 250px;
+  overflow-y: auto;
+  margin: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+
+.scroll-card-header {
+  background-color: #2e4553;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+
+.scroll-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.scroll-card-list li {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.scroll-card-list li:hover {
+  background-color: #cfd8dc;
+}
+
+
+.scroll-card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scroll-card::-webkit-scrollbar-track {
+  background: #e0e6e9;
+  border-radius: 3px;
+}
+
+.scroll-card::-webkit-scrollbar-thumb {
+  background: #2e4553;
+  border-radius: 3px;
+}
+
+.scroll-card::-webkit-scrollbar-thumb:hover {
+  background: #1e2f3b;
+}

@@ -1,0 +1,17 @@
+.custom-navbar {
+  background-color: #2e4553 !important;
+}
+
+.custom-navbar .nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #cfd8dc !important;
+}
+
+.custom-navbar .navbar-brand img {
+  filter: brightness(1.2);
+}

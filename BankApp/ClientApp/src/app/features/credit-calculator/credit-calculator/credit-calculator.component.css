@@ -1,0 +1,85 @@
+.container-fluid {
+  padding-left: 50px;
+  padding-right: 50px;
+  margin-left: 80px;
+}
+
+.form-card {
+  width: 100%;
+  max-width: 400px;
+}
+
+.form-card .form-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.form-card .form-control {
+  font-size: 0.9rem;
+  height: 35px;
+  padding: 6px 10px;
+}
+
+.form-card .btn {
+  font-size: 1rem;
+  padding: 8px 12px;
+}
+
+.scroll-card {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+}
+
+.dropdown-table-wrapper .dropdown-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  font-weight: 500;
+}
+
+.table-responsive table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.table-responsive table th,
+.table-responsive table td {
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.8rem;
+  padding: 6px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.form-card .btn-danger {
+  background-color: #2e4553;
+  border-color: #2e4553;
+  color: #fff;
+}
+
+.form-card .btn-danger:hover,
+.form-card .btn-danger:focus {
+  background-color: #1e2f3b;
+  border-color: #1e2f3b;
+  color: #fff;
+}
+
+.form-card .btn-danger:focus {
+  box-shadow: 0 0 0 .2rem rgba(46, 69, 83, 0.25);
+}
+
+.form-card .form-select {
+  font-size: 0.9rem;
+  height: 35px;
+  padding: 6px 10px;
+}

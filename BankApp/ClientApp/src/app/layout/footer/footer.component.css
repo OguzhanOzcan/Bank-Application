@@ -1,0 +1,29 @@
+footer {
+  background-color: #2e4553 !important; /* Navbar ile aynı renk */
+  color: #ffffff; /* Yazılar beyaz */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-align: center;
+}
+
+footer a {
+  color: #ffffff; /* Linkler beyaz */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #cfd8dc; /* Navbar hover rengiyle aynı */
+  text-decoration: underline;
+}
+
+footer .fab {
+  font-size: 1.2rem;
+  margin: 0 10px;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+footer .fab:hover {
+  color: #cfd8dc;
+}

@@ -1,0 +1,21 @@
+ServerApp/
+├─ Controllers/
+│  ├─ CreditController.cs        # Kredi hesaplama ve başvuru API'leri
+│  └─ BankController.cs          # Banka ve popüler krediler API'leri
+│
+├─ Models/                       # Veri modelleri
+│  ├─ CreditApplication.cs
+│  ├─ LoanProduct.cs
+│  └─ PaymentPlanItem.cs
+│
+├─ Data/
+│  └─ ApplicationDbContext.cs    # EF Core DbContext
+│
+├─ Services/
+│  └─ CreditService.cs           # Kredi hesaplama mantığı
+│
+├─ Properties/
+│  └─ launchSettings.json
+├─ Program.cs
+├─ appsettings.json
+└─ ServerApp.csproj

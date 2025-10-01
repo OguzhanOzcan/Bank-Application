@@ -1,0 +1,84 @@
+<div class="container-fluid mt-5 px-0">
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-center">
+      <div class="card p-4 shadow-sm form-card">
+        <form #creditForm="ngForm" (ngSubmit)="applyCredit()">
+          <div class="mb-3">
+            <label for="email" class="form-label">E-Mail Adresi:</label>
+            <input type="email" class="form-control" id="email"
+                   placeholder="E-Mail adresinizi giriniz."
+                   [(ngModel)]="email" name="email"
+                   #emailInput="ngModel" required>
+            <div *ngIf="emailInput.touched && emailInput.invalid" class="text-danger">
+              Geçerli bir E-Mail zorunludur.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="fullName" class="form-label">Ad Soyad:</label>
+            <input type="text" class="form-control" id="fullName"
+                   placeholder="Ad ve soyadınızı giriniz."
+                   [(ngModel)]="fullName" name="fullName"
+                   #fullNameInput="ngModel" required>
+            <div *ngIf="fullNameInput.touched && fullNameInput.invalid" class="text-danger">
+              Ad-Soyad zorunludur.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="bank" class="form-label">Banka Seçiniz:</label>
+            <select class="form-select" id="bank"
+                    [(ngModel)]="selectedBank" name="bank"
+                    required>
+              <option [ngValue]="null" disabled>Bir banka seçiniz</option>
+              <option *ngFor="let bank of banks" [ngValue]="bank">{{ bank.name }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="loanType" class="form-label">Kredi Türü Seçiniz:</label>
+            <select class="form-select" id="loanType"
+                    [(ngModel)]="selectedLoanType" name="loanType"
+                    required>
+              <option [ngValue]="null" disabled>Kredi türü seçiniz</option>
+              <option *ngFor="let item of krediTypes" [ngValue]="item">{{ item.name }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="amount" class="form-label">Kredi Tutarı:</label>
+            <input type="number" class="form-control" id="amount"
+                   placeholder="Kredi tutarını giriniz."
+                   [(ngModel)]="amount" name="amount"
+                   #amountInput="ngModel" required>
+            <div *ngIf="amountInput.touched && amountInput.invalid" class="text-danger">
+              Kredi tutarı zorunludur.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="term" class="form-label">Kredi Vadesi (Ay):</label>
+            <input type="number" class="form-control" id="term"
+                   placeholder="Vade sayısını giriniz."
+                   [(ngModel)]="term" name="term"
+                   #loanTerm="ngModel" required>
+            <div *ngIf="loanTerm.touched && loanTerm.invalid" class="text-danger">
+              Kredi vadesi zorunludur.
+            </div>
+          </div>
+
+          <button type="submit"
+                  class="btn btn-danger w-100 mt-2"
+                  [disabled]="isSending">
+            {{ isSending ? 'Gönderiliyor...' : 'Krediye Başvur' }}
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-flex flex-column align-items-center gap-3">
+      <app-scroll-card title="Bankalar"></app-scroll-card>
+      <app-scroll-card title="Popüler Olan Aramalar"></app-scroll-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+app/
+├─ core/                   # Genel servisler, guard, interceptor
+│  └─ services/
+│     ├─ credit.service.ts
+│     └─ bank.service.ts
+│
+├─ shared/                 # Tekrar kullanılacak component, pipe, directive
+│  └─ components/
+│     └─ scroll-card/      # Kaydırılabilir kart component
+│        ├─ scroll-card.component.ts
+│        ├─ scroll-card.component.html
+│        └─ scroll-card.component.css
+│
+├─ features/               # Sayfalar
+│  ├─ credit-calculator/
+│  │  ├─ credit-calculator.module.ts
+│  │  ├─ credit-calculator-routing.module.ts
+│  │  └─ credit-calculator/ (component)
+│  ├─ credit-application/
+│  │  ├─ credit-application.module.ts
+│  │  ├─ credit-application-routing.module.ts
+│  │  └─ credit-application/ (component)
+│  ├─ about/
+│  │  ├─ about.module.ts
+│  │  ├─ about-routing.module.ts
+│  │  └─ about/ (component)
+│  ├─ contact/
+│  │  ├─ contact.module.ts
+│  │  ├─ contact-routing.module.ts
+│  │  └─ contact/ (component)
+│  ├─ musteri-ol/
+│  │  ├─ musteri-ol.module.ts
+│  │  ├─ musteri-ol-routing.module.ts
+│  │  └─ musteri-ol/ (component)
+│  └─ banks/
+│  |  ├─ rules.module.ts
+│  |  ├─ rules-routing.module.ts
+│  |  └─ rules/ (component)
+│  |
+│  └─ rules/
+│     ├─ rules.module.ts
+│     ├─ rules-routing.module.ts
+│     └─ rules/ (component)
+├─ layout/                 # Navbar, Footer
+│  ├─ navbar/
+│  └─ footer/
+│
+├─ app-routing.module.ts
+└─ app.module.ts
+
