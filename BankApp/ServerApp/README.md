@@ -1,3 +1,4 @@
+
 ```
 ServerApp
 ├─ appsettings.Development.json
@@ -78,6 +79,7 @@ ServerApp
 │        └─ System.Security.Cryptography.ProtectedData.dll
 ├─ Controllers
 │  ├─ AuthController.cs
+│  ├─ CreditApplicationController.cs
 │  ├─ CreditController.cs
 │  ├─ CustomerController.cs
 │  └─ MessageController.cs
@@ -95,10 +97,13 @@ ServerApp
 │  │  └─ VerifyResetCodeDto.cs
 │  ├─ Credit
 │  │  ├─ BankDto.cs
+│  │  ├─ CreditApplicationRequestDto.cs
+│  │  ├─ CreditApplicationResponseDto.cs
 │  │  ├─ CreditCalculationResultDto.cs
 │  │  ├─ CreditCalculatorRequestDto.cs
 │  │  ├─ InterestRateDto.cs
-│  │  └─ LoanTypeDto.cs
+│  │  ├─ LoanTypeDto.cs
+│  │  └─ MyCreditDto.cs
 │  └─ Customer
 │     ├─ UpdateCustomerDto.cs
 │     └─ UpdatePasswordDto.cs
@@ -111,6 +116,7 @@ ServerApp
 ├─ Migrations
 ├─ Models
 │  ├─ Bank.cs
+│  ├─ CreditApplication.cs
 │  ├─ Customer.cs
 │  ├─ InterestRate.cs
 │  ├─ LoanType.cs
@@ -152,11 +158,13 @@ ServerApp
 ├─ Repositories
 │  ├─ Implementations
 │  │  ├─ AuthRepository.cs
+│  │  ├─ CreditApplicationRepository.cs
 │  │  ├─ CreditRepository.cs
 │  │  ├─ MessageRepository.cs
 │  │  └─ UserRepository.cs
 │  └─ Interfaces
 │     ├─ IAuthRepository.cs
+│     ├─ ICreditApplicationRepository.cs
 │     ├─ ICreditRepository.cs
 │     ├─ IMessageRepository.cs
 │     └─ IUserRepository.cs
@@ -165,12 +173,14 @@ ServerApp
 ├─ Services
 │  ├─ Implementations
 │  │  ├─ AuthService.cs
+│  │  ├─ CreditApplicationService.cs
 │  │  ├─ CreditCalculationService.cs
 │  │  ├─ CreditService.cs
 │  │  ├─ MessageService.cs
 │  │  └─ UserService.cs
 │  └─ Interfaces
 │     ├─ IAuthService.cs
+│     ├─ ICreditApplicationService.cs
 │     ├─ ICreditCalculationService.cs
 │     ├─ ICreditService.cs
 │     ├─ IMessageService.cs
