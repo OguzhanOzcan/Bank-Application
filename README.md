@@ -1,15 +1,18 @@
 # Bank Application
 .NET Core ve Angular kullanılmıştır.
-![DatabaseSchema](https://github.com/user-attachments/assets/ab729b34-1cd6-47d2-b00e-6b94c1b5a5e6)
-![kisiselbilgiler2](https://github.com/user-attachments/assets/95da91dd-c233-4e09-abb4-6331f9838433)
-![kisiselbilgiler](https://github.com/user-attachments/assets/b26ffbef-8c51-470a-bb6b-fc85befb09b1)
-![iletisim](https://github.com/user-attachments/assets/e06d1a72-28cc-466d-8203-f735348857ac)
-![bankalar](https://github.com/user-attachments/assets/1d4b63e6-98f9-45ed-a7d5-d7dd0367a314)
-![kredibasvurusu2](https://github.com/user-attachments/assets/05444e73-9eb7-47f1-b397-16b67a72b0a2)
-![kredibasvurusu1](https://github.com/user-attachments/assets/a7fc9690-72ee-440e-9b53-abf0dcd5ffa7)
-![kredihesapla](https://github.com/user-attachments/assets/ddeb316d-3e4f-48c4-b51e-d274974b5007)
-![sifremiunuttum3](https://github.com/user-attachments/assets/5eca6397-01bb-4cc9-b3dd-c19eb5546c6b)
-![sifremiunuttum2](https://github.com/user-attachments/assets/8b708bf1-8a02-49fb-99d1-b7c7e636e715)
-![sifremiunuttum1](https://github.com/user-attachments/assets/904a21d2-c65e-4751-811b-6fad9d406517)
-![login](https://github.com/user-attachments/assets/9f56c6b7-3feb-4bff-be9b-2fff696aded8)
-![register](https://github.com/user-attachments/assets/2329f3fe-c681-40c4-bd78-71b5fa1eaa66)
+![register](https://github.com/user-attachments/assets/ed6306db-deca-4439-b66a-d6cd59983910)
+![login](https://github.com/user-attachments/assets/fb87a3f4-35ed-4cd3-8b99-385af918150c)
+![sifremiunuttum1](https://github.com/user-attachments/assets/f2742a43-dc35-4af5-bf71-286683907d0b)
+![sifremiunuttum2](https://github.com/user-attachments/assets/c6211069-9f6d-4b3f-8467-28ff93c192ad)
+![sifremiunuttum3](https://github.com/user-attachments/assets/37854f5b-b251-476d-b2f3-81165257511a)
+![kisiselbilgiler](https://github.com/user-attachments/assets/c77499f6-ed3a-4b70-8efd-29baae6e2c12)
+![kisiselbilgiler2](https://github.com/user-attachments/assets/6fde863c-46a6-4641-aa58-5e239540dbfb)
+![bankalar](https://github.com/user-attachments/assets/78da199f-60dd-494b-a270-1efbd9228b18)
+![kredihesapla](https://github.com/user-attachments/assets/404238bc-d857-443e-adf0-e439f9c2f214)
+![kredibasvurusu1](https://github.com/user-attachments/assets/6253e6ef-39ec-417b-ada3-297b54d3f5ec)
+![kredibasvurusu2](https://github.com/user-attachments/assets/205a6fca-d6ac-47cf-835b-50213e8c5cd2)
+![iletisim](https://github.com/user-attachments/assets/73c27113-aa42-4762-a5de-6978db572f32)
+![DatabaseSchema](https://github.com/user-attachments/assets/634b6635-d5b1-4bd0-a5fc-92c17c3e7e9a)
+
+
+
