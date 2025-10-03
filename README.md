@@ -26,12 +26,13 @@ https://localhost:5001
 
 Note:
 In ServerApp/appsettings.json, update your Mailtrap SMTP credentials:
-
+// line 18
+// line 19
 "EmailSettings": {
   "SmtpServer": "smtp.mailtrap.io",
   "SmtpPort": 587,
-  "SmtpUser": "youraccount",   // line 18
-  "SmtpPass": "yourpassword"   // line 19
+  "SmtpUser": "youraccount",   
+  "SmtpPass": "yourpassword"   
 }
 
 3. Frontend (ClientApp)
