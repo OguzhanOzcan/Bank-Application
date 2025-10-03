@@ -1,3 +1,59 @@
+#Bank Application
+
+This project is a banking and financial web application built with **.NET Core 3.1** (Backend) and **Angular 9** (Frontend).  
+It includes modules for authentication, user management, credit calculation, credit application, and messaging.
+
+---
+
+##Setup Instructions
+
+### 1. Requirements
+- [.NET Core SDK 3.1.425](https://dotnet.microsoft.com/download/dotnet/3.1)
+- [Node.js 12.16.3](https://nodejs.org/download/release/v12.16.3/)
+- Angular CLI 9.1.15 (`npm install -g @angular/cli@9.1.15`)
+- SQL Server (or a compatible database)
+
+---
+
+### 2. Backend (ServerApp)
+```bash
+cd ServerApp
+dotnet restore
+dotnet run
+
+The backend runs by default at:
+https://localhost:5001
+
+Note:
+In ServerApp/appsettings.json, update your Mailtrap SMTP credentials:
+
+"EmailSettings": {
+  "SmtpServer": "smtp.mailtrap.io",
+  "SmtpPort": 587,
+  "SmtpUser": "youraccount",   // line 18
+  "SmtpPass": "yourpassword"   // line 19
+}
+
+3. Frontend (ClientApp)
+cd ClientApp
+npm install
+ng serve --open
+
+
+The frontend runs by default at:
+http://localhost:4200
+
+4. Database
+
+Update your connection string in appsettings.json.
+
+Apply initial migrations and create the database:
+
+dotnet ef database update
+
+
+
+
 # Bank Application
 .NET Core ve Angular kullanılmıştır.
 ![register](https://github.com/user-attachments/assets/ed6306db-deca-4439-b66a-d6cd59983910)
