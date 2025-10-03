@@ -16,7 +16,7 @@ It includes modules for authentication, user management, credit calculation, cre
 ---
 
 ### 2. Backend (ServerApp)
-```bash
+
 cd ServerApp
 dotnet restore
 dotnet run
@@ -54,8 +54,7 @@ dotnet ef database update
 
 
 
-# Bank Application
-.NET Core ve Angular kullanılmıştır.
+
 ![register](https://github.com/user-attachments/assets/ed6306db-deca-4439-b66a-d6cd59983910)
 ![login](https://github.com/user-attachments/assets/fb87a3f4-35ed-4cd3-8b99-385af918150c)
 ![sifremiunuttum1](https://github.com/user-attachments/assets/f2742a43-dc35-4af5-bf71-286683907d0b)
