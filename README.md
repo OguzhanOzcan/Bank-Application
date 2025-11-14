@@ -1,89 +1,135 @@
-#Bank Application
+# Bankacılık ve Kredi Başvuru Uygulaması (Full-Stack)
 
-This project is a banking and financial web application built with **.NET Core 3.1** (Backend) and **Angular 9** (Frontend).  
-It includes modules for authentication, user management, credit calculation, credit application, and messaging.
-
----
-
-##Setup Instructions
-
-### 1. Requirements
-- [.NET Core SDK 3.1.425](https://dotnet.microsoft.com/download/dotnet/3.1)
-- [Node.js 12.16.3](https://nodejs.org/download/release/v12.16.3/)
-- Angular CLI 9.1.15 (`npm install -g @angular/cli@9.1.15`)
-- SQL Server (or a compatible database)
+Bu proje, **Angular** (Frontend) ve **.NET Core Web API** (Backend) kullanılarak geliştirilmiş, bankacılık ve kredi uygulamalarını kapsayan, **Docker** ve **Gözlemlenebilirlik** (Prometheus, Grafana, Kafka) odaklı modern bir uygulamadır.
 
 ---
 
-### 2. Backend (ServerApp)
+## Ana Özellikler
 
-cd ServerApp
-dotnet restore
-dotnet run
+### Frontend (Angular)
+* **Kullanıcı Akışı:** Kayıt, Giriş, **Şifre Sıfırlama (E-posta ile)**, Profil/Bakiye Güncelleme.
+* **Kredi İşlemleri:** Kredi Hesaplama (Faiz Oranı Getirme), Kredi Başvurusu ve Başvuru Takibi.
+* **Güvenlik:** **JWT** Kimlik Doğrulama ve `AuthInterceptor` kullanımı.
 
-The backend runs by default at:
-https://localhost:5001
+### Backend (.NET Core 3.1 Web API)
+* **Mimari:** Katmanlı (Repository/Service/Controller) ve temiz kod yaklaşımı.
+* **Veritabanı:** **MSSQL** (Ana Veri), **MongoDB** (Kredi Olay Logları).
+* **Gözlemlenebilirlik:** **Prometheus** metrikleri (API Süresi, Hatalar) ve MongoDB'ye Event Loglama.
+* **E-posta:** Şifre sıfırlama işlemleri için **SMTP** (Mailtrap Sandbox) entegrasyonu.
 
-Note:
-In ServerApp/appsettings.json, update your Mailtrap SMTP credentials:
-// line 18
-// line 19
+---
+
+## Teknolojiler
+
+| Alan | Teknoloji | Not |
+| :--- | :--- | :--- |
+| **Frontend** | Angular | UI/UX Katmanı |
+| **Backend** | .NET Core 3.1 | Web API ve İş Mantığı |
+| **Veri (İlişkisel)**| MSSQL | Kullanıcı, Kredi, Banka Verileri |
+| **Veri (Olay Kaydı)**| MongoDB | Kredi Başvuru Olaylarını Kaydetme |
+| **Altyapı** | Docker, Docker Compose | Tüm servislere tek elden yönetim |
+| **Gözlemlenebilirlik** | Prometheus, Grafana | Metrik Toplama ve Görselleştirme |
+| **Mesajlaşma** | Kafka, Zookeeper | Olay Akışı Altyapısı |
+
+---
+
+## Kurulum Öncesi Not (E-posta Ayarları)
+
+Uygulama, şifre sıfırlama işlemlerinde e-posta göndermek için bir SMTP sunucusuna ihtiyaç duyar. Varsayılan olarak Mailtrap Sandbox bilgileri kullanılmıştır.
+
+Lütfen `ServerApp/appsettings.json` dosyasındaki `EmailSettings` bloğunu kendi Mailtrap veya SMTP sunucu bilgilerinizle **güncelleyin**. Aksi takdirde, şifre sıfırlama özelliği çalışmayacaktır.
+
+```json
 "EmailSettings": {
-  "SmtpServer": "smtp.mailtrap.io",
-  "SmtpPort": 587,
-  "SmtpUser": "youraccount",   
-  "SmtpPass": "yourpassword"   
+    "SmtpHost": "sandbox.smtp.mailtrap.io",
+    "SmtpPort": 2525,
+    "SmtpUser": "--------",                   // Kendi SMTP kullanıcı adınızla değiştirin!
+    "SmtpPass": "--------",                   // Kendi SMTP şifrenizle değiştirin!
+    "FromName": "BankApp",
+    "FromEmail": "noreply@myapp.com"
 }
+```
 
-3. Frontend (ClientApp)
+## Başlangıç Kılavuzu (Docker Compose)
+### Projeyi çalıştırmak için Docker ve Docker Compose gereklidir.
+### Ortamı Başlatma:
+```bash
+docker-compose up -d
+```
+(Bu komut, tüm servisleri (DB, Kafka, Prometheus, ServerApp) ayağa kaldırır ve MSSQL veritabanını restore eder.)
+
+### Frontend'i Çalıştırma:
+```
 cd ClientApp
 npm install
-ng serve --open
+npm start
+```
+
+### Servis Erişim Bilgileri:
+```
+Servis	                          Adres
+Frontend Uygulama	              http://localhost:4200
+Backend API (Swagger)	          http://localhost:5000/swagger
+Grafana Dashboard	              http://localhost:5200
+Prometheus Metrikleri	          http://localhost:5000/metrics
+```
+
+## Proje Kanıtları ve Altyapı
+
+### 1. Sistem Mimarisi ve Konteyner Yönetimi
+
+    Tüm altyapı servislerinin (DB, API, Log, Metrikler) Docker konteynerlerinde çalışır durumu.
+
+### 2. Gözlemlenebilirlik (Grafana & Prometheus)
+
+    Grafana panosu üzerinden API ve Kafka metriklerinin izlenmesi.
+
+### 3. Kritik Backend Kod ve Loglama
+
+    Alan                                Açıklama
+    Global Hata Yönetimi                Özel Middleware ile tüm hataların yakalanıp metriklerinin artırılması.
+    API Yanıt Süresi                    API'lerin çalışma hızını ölçen Middleware.
+    Olay Loglama                        Başvuruların MongoDB'ye event olarak kaydedilmesi.
+    (MongoDB)
 
 
-The frontend runs by default at:
-http://localhost:4200
-
-4. Database
-
-Update your connection string in appsettings.json.
-
-Apply initial migrations and create the database:
-
-dotnet ef database update
+### 4. API Dökümantasyonu
+    Uygulanan API uç noktalarının Swagger üzerinden görünümü.
 
 
+## Kafka Entegrasyonu
 
+Kafka, olay akışı ve asenkron işlemler için altyapı olarak kurulmuştur.
 
+Kafka Topic Oluşturma ve Tüketme (Docker içinde):
 
-![register](https://github.com/user-attachments/assets/ed6306db-deca-4439-b66a-d6cd59983910)
+```
+# Topic oluşturma
+docker exec -it kafka kafka-topics --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic test-topic
 
-![login](https://github.com/user-attachments/assets/fb87a3f4-35ed-4cd3-8b99-385af918150c)
+# Consumer başlatma
+docker exec -it kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic test-topic --from-beginning --group test-group
+```
 
-![sifremiunuttum1](https://github.com/user-attachments/assets/f2742a43-dc35-4af5-bf71-286683907d0b)
+## Proje Görselleri 
+### Front-End.
 
-![sifremiunuttum2](https://github.com/user-attachments/assets/c6211069-9f6d-4b3f-8467-28ff93c192ad)
+![1](images/Swagger.jpg)
 
-![1](https://github.com/user-attachments/assets/c399651f-bfa7-44bf-908c-342b05a770cf)
+### Projede oluşturulan API' ler.
 
-![sifremiunuttum3](https://github.com/user-attachments/assets/37854f5b-b251-476d-b2f3-81165257511a)
+![1](images/Swagger.jpg)
 
+### API response grafiği.
+![1](images/ApiResponseTime.jpg)
 
-![kisiselbilgiler](https://github.com/user-attachments/assets/c77499f6-ed3a-4b70-8efd-29baae6e2c12)
+### Docker yapısı.
 
-![kisiselbilgiler2](https://github.com/user-attachments/assets/6fde863c-46a6-4641-aa58-5e239540dbfb)
+![2](images/DockerDesktop.jpg)
 
-![bankalar](https://github.com/user-attachments/assets/78da199f-60dd-494b-a270-1efbd9228b18)
+### Grafana Dasboard yapısı.
 
-![kredihesapla](https://github.com/user-attachments/assets/404238bc-d857-443e-adf0-e439f9c2f214)
+![3](images/DashboardYapısı.jpg)
 
-![kredibasvurusu1](https://github.com/user-attachments/assets/6253e6ef-39ec-417b-ada3-297b54d3f5ec)
-
-![kredibasvurusu2](https://github.com/user-attachments/assets/205a6fca-d6ac-47cf-835b-50213e8c5cd2)
-
-![iletisim](https://github.com/user-attachments/assets/73c27113-aa42-4762-a5de-6978db572f32)
-
-![DatabaseDiagram](https://github.com/user-attachments/assets/ab8c3984-3af3-4f0b-bfed-311339dc9a7a)
-
-
-
+### Kafa Metric Örneği
+![4](images/MemoryUsage.jpg)
