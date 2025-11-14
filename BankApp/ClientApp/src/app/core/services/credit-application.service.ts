@@ -12,7 +12,7 @@ import {
 })
 
 export class CreditApplicationService {
-  private readonly baseUrl = 'https://localhost:5000/api';
+  private readonly baseUrl = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) {}
 

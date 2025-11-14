@@ -16,7 +16,7 @@ export interface UserProfile {
 })
 export class UserService {
 
-  private apiUrl = 'https://localhost:5000/api/customer';
+  private apiUrl = 'http://localhost:5000/api/customer';
 
   constructor(private http: HttpClient) { }
 
@@ -30,5 +30,9 @@ export class UserService {
 
   updatePassword(payload: { password: string }): Observable<any> {
     return this.http.put(`${this.apiUrl}/update-password`, payload);
+  }
+
+  getBalance(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/balance`);
   }
 }

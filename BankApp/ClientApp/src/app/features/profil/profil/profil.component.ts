@@ -9,14 +9,17 @@ import { passwordValidator, passwordMatchValidator } from 'src/app/shared/valida
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent implements OnInit {
+  balance: number = 0;
   personalForm!: FormGroup;
   passwordForm!: FormGroup;
-  activeTab: string = 'personal';
+  activeTab: 'personal' | 'password' | 'balance' = 'personal';
   sehir: string[] = ['Ankara', 'İstanbul', 'Bursa', 'İzmir', 'Eskişehir'];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {
+    this.loadBalance();
+
     this.personalForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -34,6 +37,10 @@ export class ProfilComponent implements OnInit {
     this.loadUserData();
   }
 
+  switchTab(tab: 'personal' | 'password' | 'balance') {
+    this.activeTab = tab;
+  }
+
   loadUserData(): void {
     this.userService.getProfile().subscribe(user => {
       this.personalForm.patchValue({
@@ -47,6 +54,13 @@ export class ProfilComponent implements OnInit {
     });
   }
 
+  loadBalance(): void {
+    this.userService.getBalance().subscribe({
+      next: (res: any) => this.balance = res.amount,
+      error: (err) => console.error('Bakiye alınamadı', err)
+    });
+  }
+
   updatePersonal(): void {
     if (this.personalForm.invalid) {
       this.personalForm.markAllAsTouched();
@@ -54,7 +68,7 @@ export class ProfilComponent implements OnInit {
     }
     const updatedData = this.personalForm.value;
     this.userService.updateProfile(updatedData).subscribe({
-      next: res => alert('Bilgiler başarıyla güncellendi!'),
+      next: () => alert('Bilgiler başarıyla güncellendi!'),
       error: err => console.error('Güncelleme hatası:', err)
     });
   }
@@ -66,15 +80,11 @@ export class ProfilComponent implements OnInit {
     }
     const newPassword = this.passwordForm.value.password;
     this.userService.updatePassword({ password: newPassword }).subscribe({
-      next: res => {
-        alert('Şifre başarıyla güncellendi!'),
+      next: () => {
+        alert('Şifre başarıyla güncellendi!');
         this.passwordForm.reset();
       },
       error: err => console.error('Şifre güncelleme hatası:', err)
     });
-  }
-
-  switchTab(tab: string) {
-    this.activeTab = tab;
   }
 }

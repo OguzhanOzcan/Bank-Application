@@ -7,7 +7,7 @@ import { Bank, LoanType } from "src/app/models/credit-application.model";
   providedIn: 'root'
 })
 export class BankLoanService {
-  private readonly baseUrl = 'https://localhost:5000/api';
+  private readonly baseUrl = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) {}
 

@@ -7,7 +7,7 @@ import { MyCredit } from "src/app/models/credit-application.model";
   providedIn: 'root'
 })
 export class MyCreditService {
-  private readonly baseUrl = 'https://localhost:5000/api/creditapplication';
+  private readonly baseUrl = 'http://localhost:5000/api/creditapplication';
 
   constructor(private http: HttpClient) { }
 

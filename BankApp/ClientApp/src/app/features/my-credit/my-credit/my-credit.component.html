@@ -37,7 +37,7 @@
           <td>{{ credit.interestRate | number:'1.2-2' }}</td>
           <td [ngClass]="{
             'text-warning': credit.status==='Beklemede',
-            'text-danger': credit.status==='Onaylanmadı',
+            'text-danger': credit.status==='Reddedildi',
             'text-success': credit.status==='Onaylandı'
           }">
           {{ credit.status }}</td>

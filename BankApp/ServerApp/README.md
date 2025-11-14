@@ -9,6 +9,9 @@ ServerApp
 │        ├─ appsettings.Development.json
 │        ├─ appsettings.json
 │        ├─ AutoMapper.dll
+│        ├─ AWSSDK.Core.dll
+│        ├─ AWSSDK.SecurityToken.dll
+│        ├─ DnsClient.dll
 │        ├─ global.json
 │        ├─ Microsoft.AspNetCore.Authentication.JwtBearer.dll
 │        ├─ Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -28,6 +31,7 @@ ServerApp
 │        ├─ Microsoft.Extensions.Configuration.dll
 │        ├─ Microsoft.Extensions.DependencyInjection.Abstractions.dll
 │        ├─ Microsoft.Extensions.DependencyInjection.dll
+│        ├─ Microsoft.Extensions.Http.dll
 │        ├─ Microsoft.Extensions.Logging.Abstractions.dll
 │        ├─ Microsoft.Extensions.Logging.dll
 │        ├─ Microsoft.Extensions.Options.dll
@@ -38,24 +42,45 @@ ServerApp
 │        ├─ Microsoft.IdentityModel.Protocols.dll
 │        ├─ Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 │        ├─ Microsoft.IdentityModel.Tokens.dll
+│        ├─ Microsoft.OpenApi.dll
+│        ├─ Microsoft.Win32.Registry.dll
+│        ├─ MongoDB.Bson.dll
+│        ├─ MongoDB.Driver.Core.dll
+│        ├─ MongoDB.Driver.dll
+│        ├─ MongoDB.Libmongocrypt.dll
 │        ├─ Newtonsoft.Json.dll
+│        ├─ Prometheus.AspNetCore.dll
+│        ├─ Prometheus.NetCore.dll
+│        ├─ Prometheus.NetStandard.dll
 │        ├─ Properties
 │        │  └─ launchSettings.json
 │        ├─ runtimes
+│        │  ├─ linux
+│        │  │  └─ native
+│        │  │     └─ libmongocrypt.so
+│        │  ├─ osx
+│        │  │  └─ native
+│        │  │     └─ libmongocrypt.dylib
 │        │  ├─ unix
 │        │  │  └─ lib
 │        │  │     ├─ netcoreapp2.0
 │        │  │     │  └─ System.Runtime.Caching.dll
 │        │  │     └─ netcoreapp2.1
-│        │  │        └─ Microsoft.Data.SqlClient.dll
+│        │  │        ├─ Microsoft.Data.SqlClient.dll
+│        │  │        └─ System.Security.Principal.Windows.dll
 │        │  ├─ win
-│        │  │  └─ lib
-│        │  │     ├─ netcoreapp2.0
-│        │  │     │  └─ System.Runtime.Caching.dll
-│        │  │     ├─ netcoreapp2.1
-│        │  │     │  └─ Microsoft.Data.SqlClient.dll
-│        │  │     └─ netstandard2.0
-│        │  │        └─ System.Security.Cryptography.ProtectedData.dll
+│        │  │  ├─ lib
+│        │  │  │  ├─ netcoreapp2.0
+│        │  │  │  │  ├─ System.Runtime.Caching.dll
+│        │  │  │  │  └─ System.Security.AccessControl.dll
+│        │  │  │  ├─ netcoreapp2.1
+│        │  │  │  │  ├─ Microsoft.Data.SqlClient.dll
+│        │  │  │  │  └─ System.Security.Principal.Windows.dll
+│        │  │  │  └─ netstandard2.0
+│        │  │  │     ├─ Microsoft.Win32.Registry.dll
+│        │  │  │     └─ System.Security.Cryptography.ProtectedData.dll
+│        │  │  └─ native
+│        │  │     └─ mongocrypt.dll
 │        │  ├─ win-arm64
 │        │  │  └─ native
 │        │  │     └─ sni.dll
@@ -71,12 +96,21 @@ ServerApp
 │        ├─ ServerApp.pdb
 │        ├─ ServerApp.runtimeconfig.dev.json
 │        ├─ ServerApp.runtimeconfig.json
+│        ├─ SharpCompress.dll
+│        ├─ Snappier.dll
+│        ├─ Swashbuckle.AspNetCore.Swagger.dll
+│        ├─ Swashbuckle.AspNetCore.SwaggerGen.dll
+│        ├─ Swashbuckle.AspNetCore.SwaggerUI.dll
 │        ├─ System.Collections.Immutable.dll
 │        ├─ System.Configuration.ConfigurationManager.dll
 │        ├─ System.Diagnostics.DiagnosticSource.dll
 │        ├─ System.IdentityModel.Tokens.Jwt.dll
 │        ├─ System.Runtime.Caching.dll
-│        └─ System.Security.Cryptography.ProtectedData.dll
+│        ├─ System.Runtime.CompilerServices.Unsafe.dll
+│        ├─ System.Security.AccessControl.dll
+│        ├─ System.Security.Cryptography.ProtectedData.dll
+│        ├─ System.Security.Principal.Windows.dll
+│        └─ ZstdSharp.dll
 ├─ Controllers
 │  ├─ AuthController.cs
 │  ├─ CreditApplicationController.cs
@@ -85,6 +119,8 @@ ServerApp
 │  └─ MessageController.cs
 ├─ Data
 │  └─ ApplicationDbContext.cs
+├─ docker-compose.yml
+├─ Dockerfile
 ├─ DTOs
 │  ├─ Auth
 │  │  ├─ LoginRequestDto.cs
@@ -105,41 +141,51 @@ ServerApp
 │  │  ├─ LoanTypeDto.cs
 │  │  └─ MyCreditDto.cs
 │  └─ Customer
+│     ├─ BalanceDto.cs
 │     ├─ UpdateCustomerDto.cs
 │     └─ UpdatePasswordDto.cs
 ├─ global.json
 ├─ Helpers
+│  ├─ ApiResponseTimeMiddleware.cs
 │  ├─ CreditCalculatorHelper.cs
 │  ├─ EmailSettings.cs
+│  ├─ GlobalExceptionMiddleware.cs
 │  ├─ JwtHelper.cs
+│  ├─ MetricsRegistry.cs
 │  └─ PasswordHasher.cs
-├─ Migrations
+├─ init-db.sh
+├─ jmx_prometheus_javaagent.jar
+├─ kafka-jmx-exporter
+│  ├─ jmx_prometheus_javaagent-0.16.1.jar
+│  └─ kafka-2_0_0.yml
 ├─ Models
+│  ├─ Balance.cs
 │  ├─ Bank.cs
 │  ├─ CreditApplication.cs
+│  ├─ CreditApplicationEvent.cs
 │  ├─ Customer.cs
 │  ├─ InterestRate.cs
 │  ├─ LoanType.cs
 │  ├─ Message.cs
 │  └─ ResetCode.cs
+├─ mssql-backups
+│  └─ BankAppDB.bak
 ├─ obj
 │  ├─ Debug
 │  │  └─ netcoreapp3.1
 │  │     ├─ .NETCoreApp,Version=v3.1.AssemblyAttributes.cs
-│  │     ├─ apphost.exe
 │  │     ├─ ServerApp.AssemblyInfo.cs
 │  │     ├─ ServerApp.AssemblyInfoInputs.cache
 │  │     ├─ ServerApp.assets.cache
-│  │     ├─ ServerApp.csproj.AssemblyReference.cache
 │  │     ├─ ServerApp.csproj.CopyComplete
 │  │     ├─ ServerApp.csproj.CoreCompileInputs.cache
 │  │     ├─ ServerApp.csproj.FileListAbsolute.txt
 │  │     ├─ ServerApp.csprojAssemblyReference.cache
 │  │     ├─ ServerApp.dll
 │  │     ├─ ServerApp.exe
-│  │     ├─ ServerApp.GeneratedMSBuildEditorConfig.editorconfig
 │  │     ├─ ServerApp.genruntimeconfig.cache
 │  │     ├─ ServerApp.MvcApplicationPartsAssemblyInfo.cache
+│  │     ├─ ServerApp.MvcApplicationPartsAssemblyInfo.cs
 │  │     ├─ ServerApp.pdb
 │  │     ├─ ServerApp.RazorTargetAssemblyInfo.cache
 │  │     └─ staticwebassets
@@ -147,11 +193,11 @@ ServerApp
 │  │        └─ ServerApp.StaticWebAssets.xml
 │  ├─ project.assets.json
 │  ├─ project.nuget.cache
-│  ├─ ServerApp.csproj.EntityFrameworkCore.targets
 │  ├─ ServerApp.csproj.nuget.dgspec.json
 │  ├─ ServerApp.csproj.nuget.g.props
 │  └─ ServerApp.csproj.nuget.g.targets
 ├─ Program.cs
+├─ prometheus.yml
 ├─ Properties
 │  └─ launchSettings.json
 ├─ README.md
@@ -176,6 +222,7 @@ ServerApp
 │  │  ├─ CreditApplicationService.cs
 │  │  ├─ CreditCalculationService.cs
 │  │  ├─ CreditService.cs
+│  │  ├─ EventService.cs
 │  │  ├─ MessageService.cs
 │  │  └─ UserService.cs
 │  └─ Interfaces
@@ -183,6 +230,7 @@ ServerApp
 │     ├─ ICreditApplicationService.cs
 │     ├─ ICreditCalculationService.cs
 │     ├─ ICreditService.cs
+│     ├─ IEventService.cs
 │     ├─ IMessageService.cs
 │     └─ IUserService.cs
 └─ Startup.cs

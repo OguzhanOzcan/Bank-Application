@@ -1,7 +1,7 @@
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using ServerApp.Data;
 using ServerApp.Models;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ServerApp.Repositories.Interfaces;
 
 namespace ServerApp.Repositories.Implementations
@@ -24,6 +24,11 @@ namespace ServerApp.Repositories.Implementations
         {
             _db.Customers.Update(customer);
             await _db.SaveChangesAsync();
+        }
+        
+        public async Task<Balance> GetBalanceByCustomerIdAsync(int customerId)
+        {
+            return await _db.Balances.FirstOrDefaultAsync(b => b.CustomerId == customerId);
         }
     }
 }

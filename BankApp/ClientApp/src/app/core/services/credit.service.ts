@@ -12,7 +12,7 @@ import {
   providedIn: 'root'
 })
 export class CreditService {
-  private readonly baseUrl = 'https://localhost:5000/api/credit';
+  private readonly baseUrl = 'http://localhost:5000/api/credit';
   constructor(private http: HttpClient) { }
 
   getBanks(): Observable<Bank[]> {

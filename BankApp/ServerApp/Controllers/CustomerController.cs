@@ -18,6 +18,7 @@ namespace ServerApp.Controllers
         {
             _userService = userService;
         }
+
         [HttpGet("me")]
         public async Task<IActionResult> GetProfile()
         {
@@ -31,6 +32,7 @@ namespace ServerApp.Controllers
             var customer = await _userService.GetCustomerByIdAsync(userId);
             if (customer == null)
                 return NotFound();
+
             var result = new
             {
                 firstName = customer.FirstName,
@@ -42,6 +44,7 @@ namespace ServerApp.Controllers
             };
             return Ok(result);
         }
+
         [HttpPut("update")]
         public async Task<IActionResult> UpdateProfile([FromBody] UpdateCustomerDto dto)
         {
@@ -50,6 +53,7 @@ namespace ServerApp.Controllers
             await _userService.UpdateCustomerAsync(userId, dto);
             return Ok(new { message = "Bilgiler başarıyla güncellendi!" });
         }
+        
         [HttpPut("update-password")]
         public async Task<IActionResult> UpdatePassword([FromBody] UpdatePasswordDto dto)
         {
@@ -64,6 +68,24 @@ namespace ServerApp.Controllers
             await _userService.UpdatePasswordAsync(userId, dto);
 
             return Ok(new { message = "Şifre başarıyla güncellendi!" });
+        }
+
+        [HttpGet("balance")]
+        public async Task<IActionResult> GetBalance()
+        {
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (userIdClaim == null)
+                return Unauthorized();
+
+            if (!int.TryParse(userIdClaim.Value, out int userId))
+                return Unauthorized();
+                
+            var balance = await _userService.GetBalanceByCustomerIdAsync(userId);
+
+            if (balance == null)
+                return NotFound(new { message = "Bakiye bilgisi bulunamadı." });
+
+            return Ok(balance);
         }
     }
 }

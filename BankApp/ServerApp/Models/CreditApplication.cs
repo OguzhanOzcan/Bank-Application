@@ -15,7 +15,7 @@ namespace ServerApp.Models
         public int LoanTerm { get; set; }
         public decimal InstallmentAmount { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public string Status { get; set; } = "Beklemde";
+        public string Status { get; set; }
         public decimal InterestRate { get; set; }
 
         public virtual Bank Bank { get; set; }

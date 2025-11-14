@@ -7,12 +7,12 @@ namespace ServerApp.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<ResetCode> ResetCodes { get; set; }
-
         public DbSet<Bank> Banks { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Balance> Balances { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public DbSet<LoanType> LoanTypes { get; set; }
+        public DbSet<ResetCode> ResetCodes { get; set; }
         public DbSet<InterestRate> InterestRates { get; set; }
         public DbSet<CreditApplication> CreditApplications { get; set; }
 
@@ -78,6 +78,20 @@ namespace ServerApp.Data
                 .HasOne(i => i.LoanType)
                 .WithMany(l => l.InterestRates)
                 .HasForeignKey(i => i.LoanTypeId);
+
+            modelBuilder.Entity<Balance>()
+                .ToTable("Balance")
+                .HasKey(b => b.BalanceId);
+
+            modelBuilder.Entity<Balance>()
+                .Property(b => b.Amount)
+                .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Balance>()
+                .HasOne(b => b.Customer)
+                .WithMany() 
+                .HasForeignKey(b => b.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

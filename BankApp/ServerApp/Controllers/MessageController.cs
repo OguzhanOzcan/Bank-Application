@@ -14,10 +14,12 @@ namespace ServerApp.Controllers
     public class MessageController : ControllerBase
     {
         private readonly IMessageRepository _messageRepositry;
+
         public MessageController(IMessageRepository messageRepository)
         {
             _messageRepositry = messageRepository;
         }
+
         [HttpPost]
         public async Task<IActionResult> SendMessage([FromBody] Message message)
         {
@@ -29,8 +31,10 @@ namespace ServerApp.Controllers
             message.CreatedAt = System.DateTime.UtcNow;
 
             await _messageRepositry.AddMessageAsync(message);
+            
             return Ok(new { succes = true, message = "Mesajınız başarıyla gönderildi." });
         }
+
         [HttpGet]
         public async Task<ActionResult<List<Message>>> GetMyMessages()
         {
@@ -40,6 +44,7 @@ namespace ServerApp.Controllers
 
             int userId = int.Parse(userIdClaim.Value);
             var message = await _messageRepositry.GetMessagesByCustomerIdAsync(userId);
+
             return Ok(message);
         }
     }

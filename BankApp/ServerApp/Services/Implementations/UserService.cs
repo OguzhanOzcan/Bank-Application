@@ -43,5 +43,17 @@ namespace ServerApp.Services.Implementations
 
             await _userRepository.UpdateCustomerAsync(user);
         }
+         public async Task<BalanceDto> GetBalanceByCustomerIdAsync(int customerId)
+        {
+            var balance = await _userRepository.GetBalanceByCustomerIdAsync(customerId);
+            if (balance == null) return null;
+
+            return new BalanceDto
+            {
+                Amount = balance.Amount,
+                Currency = string.IsNullOrEmpty(balance.Currency) ? "TRY" : balance.Currency,
+                LastUpdated = balance.LastUpdated.ToString("o")
+            };
+        }
     }
 }

@@ -1,0 +1,13 @@
+startDelaySeconds: 0
+lowercaseOutputName: true
+lowercaseOutputLabelNames: true
+rules:
+  - pattern: 'kafka.server<type=BrokerTopicMetrics, name=(.+)><>Count'
+    name: kafka_server_brokertopicmetrics_$1_total
+    type: COUNTER
+
+  - pattern: 'kafka.server<type=(.+), name=(.+)><>Value'
+    name: kafka_server_$1_$2
+
+  - pattern: 'java.lang<type=Memory><HeapMemoryUsage>used'
+    name: jvm_memory_heap_used_bytes

@@ -44,7 +44,7 @@ export class CreditApplicationComponent implements OnInit {
   }
 
   applyCredit(): void {
-    if (!this.email || !this.fullName || !this.selectedBank || !this.selectedLoanType || !this.amount || !this.term) {
+    if (!this.email || !this.fullName || !this.selectedBank || !this.selectedLoanType || this.amount===null || this.term===null) {
       alert('Lütfen tüm alanları doldurunuz!');
       return;
     }
@@ -68,7 +68,8 @@ export class CreditApplicationComponent implements OnInit {
         },
         error: (err) => {
           console.error('Başvuru hatası:', err);
-          alert('Kredi başvurusu gönderilemedi!');
+          const message = err?.error?.message || 'Kredi başvurusu gönderilemedi!';
+          alert(message);
         }
       });
   }

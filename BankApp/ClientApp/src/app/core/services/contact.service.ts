@@ -7,15 +7,10 @@ import { ContactRequest, ContactResponse } from 'src/app/models/contact.model';
   providedIn: 'root'
 })
 export class ContactService {
-  private readonly apiUrl = 'https://localhost:5000/api/contact';
+  private readonly apiUrl = 'http://localhost:5000/api/contact';
   constructor(private http: HttpClient) { }
 
   sendMessage(data:ContactRequest): Observable<ContactResponse> {
     return this.http.post<ContactResponse>(this.apiUrl, data);
   }
 }
-
-
-
-
-

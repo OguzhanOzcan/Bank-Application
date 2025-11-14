@@ -11,6 +11,7 @@ namespace ServerApp.Controllers
     public class CreditApplicationController : ControllerBase
     {
         private readonly ICreditApplicationService _service;
+
         public CreditApplicationController(ICreditApplicationService service)
         {
             _service = service;
@@ -25,8 +26,10 @@ namespace ServerApp.Controllers
 
             int customerId = int.Parse(userIdString);
             var result = await _service.ApplyCreditAsync(dto, customerId);
+            
             return Ok(result);
         }
+
 
         [HttpGet("my")]
         public async Task<IActionResult> GetMyCredits()
@@ -34,9 +37,10 @@ namespace ServerApp.Controllers
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString))
                 return Unauthorized("Kullanıcı girişi gerekli.");
-                
+
             int customerId = int.Parse(userIdString);
             var result = await _service.GetByCustomerIdAsync(customerId);
+
             return Ok(result);
         }
     }

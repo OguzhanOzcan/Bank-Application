@@ -16,6 +16,7 @@ namespace ServerApp.Controllers
         {
             _authService = authService;
         }
+
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto dto)
         {
@@ -29,6 +30,7 @@ namespace ServerApp.Controllers
                 return Conflict(new { message = ex.Message });
             }
         }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto dto)
         {
@@ -42,6 +44,7 @@ namespace ServerApp.Controllers
                 return Unauthorized(new { message = ex.Message });
             }
         }
+
         [HttpPost("send-reset-code")]
         public async Task<IActionResult> SendResetCode([FromBody] SendResetCodeDto dto)
         {
@@ -55,7 +58,7 @@ namespace ServerApp.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
-        
+
         [HttpPost("verify-reset-code")]
         public async Task<IActionResult> VerifyResetCode([FromBody] VerifyResetCodeDto dto)
         {
@@ -69,6 +72,7 @@ namespace ServerApp.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+        
         [HttpPut("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
         {
