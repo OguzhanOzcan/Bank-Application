@@ -114,22 +114,22 @@ docker exec -it kafka kafka-console-consumer --bootstrap-server localhost:9092 -
 ## Proje Görselleri 
 ### Front-End.
 
-![1](images/Swagger.jpg)
+![1](BankApp/images/Swagger.jpg)
 
 ### Projede oluşturulan API' ler.
 
-![1](images/Swagger.jpg)
+![2](BankApp/images/Swagger.jpg)
 
 ### API response grafiği.
-![1](images/ApiResponseTime.jpg)
+![3](BankApp/images/ApiResponseTime.jpg)
 
 ### Docker yapısı.
 
-![2](images/DockerDesktop.jpg)
+![4](BankApp/images/DockerDesktop.jpg)
 
 ### Grafana Dasboard yapısı.
 
-![3](images/DashboardYapısı.jpg)
+![5](BankApp/images/DashboardYapısı.jpg)
 
 ### Kafa Metric Örneği
-![4](images/MemoryUsage.jpg)
+![6](BankApp/images/MemoryUsage.jpg)
